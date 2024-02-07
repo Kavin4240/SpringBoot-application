@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        body {
+            background-image: url("furniture6.jpg");
+            background-position: top 60% right 0;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        label {
+            color: rgb(200, 228, 73);
+            margin-right: 5px;
+        }
+
+        input {
+            padding: 3px 4px 3px 4px;
+            border-radius: 10px;
+            border-style: none;
+        }
+
+        select {
+            padding: 3px 10px 3px 10px;
+            border-radius: 10px;
+            border-style: none;
+        }
+
+        textarea {
+            border-radius: 10px;
+            border-style: none;
+        }
+
+        .btn {
+            border-style: none;
+            border-radius: 10px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body bgcolor="red">
+    <div align="center">
+        <h1 class="text-danger">User Registration</h1>
+        <form th:action="@{/register}" method="post" th:object="${user}">
+            <label>Full Name:</label>
+            <input type="text" th:field="*{name}" /><br><br>
+            <label>E-Mail:</label>
+            <input type="text" th:field="*{email}" /><br><br>
+            <label>Password:</label>
+            <input type="password" th:field="*{pwd}" /><br><br>
+            <label>Mobile number:</label>
+            <input type="text" th:field="*{mobile_no}" /><br><br>
+            <label class="la">Address:</label>
+            <textarea rows="5" cols="25" th:field="*{address}"></textarea><br><br><br>
+            <label>Wood-Type:</label>
+            <select th:field="*{woodType}">
+                <option th:each="p:${woodList}" th:value="${p}" th:text="${p}" />
+            </select><br><br>
+            <label>Products:</label>
+            <select th:field="*{productType}">
+                <option th:each="p:${productList}" th:value="${p}" th:text="${p}" />
+            </select><br><br>
+            <label>Amount Range:</label>
+            <select th:field="*{amountRange}">
+                <option th:each="p:${amountList}" th:value="${p}" th:text="${p}" />
+            </select><br><br>
+            <label>Payment mode:</label>
+            <input type="radio" th:field="*{payment}" value="Paytm" />Paytm
+            <input type="radio" th:field="*{payment}" value="G-pay" />G-pay
+            <input type="radio" th:field="*{payment}" value="Phone-pe" />Phone-pe
+            <br><br>
+            <label>Comment:</label>
+            <textarea rows="5" cols="25" th:field="*{comment}"></textarea><br><br><br>
+            <button class="btn" type="submit">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>
